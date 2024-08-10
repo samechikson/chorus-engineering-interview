@@ -4,15 +4,15 @@
 
 Welcome to Chorus Engineering's Interview project!
 
-We're looking for engineers who are experienced, passionate, and are obsessed over strong systems and high productivity.
+We're looking for engineers who are experienced, passionate, and obsessed with strong systems and high productivity.
 
-In order to facilitate this, we use this interview project as a pretend project that mirrors the exact technical stack that we use
+In order to facilitate this, we are providing an interview project that mirrors the technical stack that used
 here at Chorus.
 
 **You, the interviewee, have the power to decide if this is the technology that you want to work on!**
 
-The goal of this interview is to identify as much about you as we can through a simple take home project, and then
-a 1 hour pairing session on the take home project where we create features together.
+The goal of this interview is to identify strengths through a take home project, followed by
+a 1 hour pairing session that will extend your work by creating features together.
 
 ## Tech Stack
 React UI
@@ -65,12 +65,12 @@ The UI should allow the user to:
 2. Select from the list of Pokémon
 3. Submit the Pokémon that we have selected to the backend.
 
-It does not have to be a beautiful UX experience. We're aiming for functional.
+**It does not have to be a beautiful UX experience. We're aiming for functional.**
 
 ### Completion Criteria
 1. There should be a profile table
-2. There should be a table for Pokémon related to a profile (up to 6)
+2. A table for Pokémon related to a profile (up to 6)
 3. The UI should allow for a profile to be created.
-4. The UI should show a list of Pokémon
-5. The UI should allow the profile to have up to 6 Pokémon applied
-6. The UI should have a way to submit profile and Pokémon to the backend for storage in the DB.
+4. Show a list of Pokémon
+5. Allow the profile to have up to 6 Pokémon applied
+6. Have a way to submit profile and Pokémon to the backend for storage in the DB.
