@@ -44,6 +44,9 @@ The UI should allow the user to:
 3. Submit the pokemon that we have selected to the backend.
 
 ### Completion Criteria
-There should be a table in a Postgresql database that holds the 6 pokemon selected by the user
-
-
+1. There should be a profile table
+2. There should be a table for pokemon related to a profile (up to 6)
+3. The UI should allow for a profile to be created.
+4. The UI should show a list of pokemon
+5. The UI should allow the profile to have up to 6 pokemon applied
+6. The UI should have a way to submit profile and pokemon to the backend for storage in the DB.
