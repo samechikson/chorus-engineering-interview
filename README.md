@@ -29,8 +29,24 @@ Package Manager: pnpm 8.15.8
 Node: 20.14.0 (LTS)
 
 ## Instructions
+1. [Install pnpm](https://pnpm.io/installation)
+2. Run `pnpm install`
+3. Run `pm2 start`
 
-Install the prereqs in order to get started.
+The API and React server will automatically watch for changes. You can manage start/stop using `pm2`
+
+Use `pm2 stop all` to stop the servers.
+Use `pm2 delete all` to delete the entry from the pm2 process list.
+
+### Troubleshooting
+
+> I can't execute pm2!
+
+pm2 is part of the devDependencies, so when you install the dependencies, you should be able to
+execute the binary from node_modules.
+
+Either use `pnpm pm2` or add `node_modules/.bin` to your `PATH`.
+
 
 ## Prompt
 
