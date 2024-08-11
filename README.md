@@ -28,13 +28,20 @@ a 1 hour pairing session that will extend your work by creating features togethe
 ## Prerequisites
 
 Package Manager: pnpm 8.15.8
+
 Node: 20.14.0 (LTS)
+
+Docker
 
 ## Instructions
 
 ### Install Preqresuites
-1. [Install pnpm](https://pnpm.io/installation)
-2. [Install nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+1. [Install nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+2. Install pnpm
+```bash
+npm i -g pnpm@8.15.8
+```
+3. Install Docker / Docker Desktop
 
 
 ### Getting and Running the Repository
@@ -53,6 +60,19 @@ You can manage start/stop using `pm2`.
 Use `pm2 stop all` to stop the servers.
 
 Use `pm2 delete all` to delete the entry from the pm2 process list.
+
+### Connecting to the Database
+Use whatever tool you'd like to connect to the database.
+
+[We recommend DataGrip.](https://www.jetbrains.com/datagrip/)
+
+Here are the connection details below.
+
+Database: pokemon
+Username: admin
+Password: admin
+Host: localhost
+Port: 5432
 
 ## Prompt
 
