@@ -37,10 +37,12 @@ Docker
 
 ### Install Preqresuites
 1. [Install nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+
 Use this command to install node and npm comes with it.
 ```bash
 nvm install --lts 
 ```
+
 2. Install pnpm
 ```bash
 npm i -g pnpm@8.15.8
