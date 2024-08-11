@@ -68,11 +68,11 @@ Use whatever tool you'd like to connect to the database.
 
 Here are the connection details below.
 
-Database: pokemon
-Username: admin
-Password: admin
-Host: localhost
-Port: 5432
+- Database: pokemon
+- Username: admin
+- Password: admin
+- Host: localhost
+- Port: 5432
 
 ## Prompt
 
