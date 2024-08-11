@@ -38,8 +38,13 @@ Node: 20.14.0 (LTS)
 
 
 ### Getting and Running the Repository
-3. Run `pnpm install`
-4. Run `pm2 start`
+
+The Hiring Manager will send you a link to this repository.
+
+Clone this repository, and run the commands below to get started.
+
+1. Run `pnpm install`
+2. Run `pm2 start`
 
 > Note: The API and React server will automatically watch for changes.
 
