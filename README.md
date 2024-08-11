@@ -47,7 +47,7 @@ nvm install --lts
 ```bash
 npm i -g pnpm@8.15.8
 ```
-3. Install Docker / Docker Desktop
+3. [Install Docker / Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 
 ### Getting and Running the Repository
