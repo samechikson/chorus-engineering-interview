@@ -38,8 +38,6 @@ Node: 20.14.0 (LTS)
 
 
 ### Getting and Running the Repository
-Please fork the repository.
-
 3. Run `pnpm install`
 4. Run `pm2 start`
 
@@ -84,6 +82,12 @@ API Requirements
 - Return pokemon
 - Create Profiles
 - Handle receiving Pokémon related to Profiles
+
+## Submission Criteria
+
+All of your work should be located in a Github Repo.
+
+Ensure your repo is public, and submit the URL back to the hiring manager.
 
 ### Troubleshooting
 
