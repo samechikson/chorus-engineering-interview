@@ -52,7 +52,7 @@ npm i -g pnpm@8.15.8
 
 ### Getting and Running the Repository
 
-The Hiring Manager will send you a link to this repository.
+**The Hiring Manager will send you a link to this repository.**
 
 Clone this repository, and run the commands below to get started.
 
@@ -62,6 +62,8 @@ Clone this repository, and run the commands below to get started.
 > Note: The API and React server will automatically watch for changes.
 
 You can manage start/stop using `pm2`.
+
+Use `pm2 logs` to see the logs from all processes.
 
 Use `pm2 stop all` to stop the servers.
 
