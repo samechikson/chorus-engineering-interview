@@ -26,6 +26,9 @@ importers:
       '@nestjs/typeorm':
         specifier: ^10.0.2
         version: 10.0.2(@nestjs/common@10.3.10)(@nestjs/core@10.3.10)(reflect-metadata@0.1.14)(rxjs@7.8.1)(typeorm@0.3.20)
+      '@tanstack/react-query':
+        specifier: ^5.55.4
+        version: 5.55.4(react@18.3.1)
       axios:
         specifier: ^1.6.0
         version: 1.7.3
@@ -41,6 +44,12 @@ importers:
       react-dom:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
+      react-router:
+        specifier: ^6.26.2
+        version: 6.26.2(react@18.3.1)
+      react-router-dom:
+        specifier: ^6.26.2
+        version: 6.26.2(react-dom@18.3.1)(react@18.3.1)
       reflect-metadata:
         specifier: ^0.1.13
         version: 0.1.14
@@ -3671,6 +3680,11 @@ packages:
     resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
     dev: true
 
+  /@remix-run/router@1.19.2:
+    resolution: {integrity: sha512-baiMx18+IMuD1yyvOGaHM9QrVUPGGG0jC+z+IPHnRJWUAUvaKuWKyE8gjDj2rzv3sz9zOGoRSPgeBVHRhZnBlA==}
+    engines: {node: '>=14.0.0'}
+    dev: false
+
   /@rollup/rollup-android-arm-eabi@4.20.0:
     resolution: {integrity: sha512-TSpWzflCc4VGAUJZlPpgAJE1+V60MePDQnBd7PPkpuEmOy8i87aL6tinFGKBFKuEDikYpig72QzdT3QPYIi+oA==}
     cpu: [arm]
@@ -4165,6 +4179,19 @@ packages:
     dependencies:
       defer-to-connect: 2.0.1
     dev: true
+
+  /@tanstack/query-core@5.55.4:
+    resolution: {integrity: sha512-uoRqNnRfzOH4OMIoxj8E2+Us89UIGXfau981qYJWsNMkFS1GXR4UIyzUTVGq4N7SDLHgFPpo6IOazqUV5gkMZA==}
+    dev: false
+
+  /@tanstack/react-query@5.55.4(react@18.3.1):
+    resolution: {integrity: sha512-e3uX5XkLD9oTV66/VsVpkYz3Ds/ps/Yk+V5d89xthAbtNIKKBEm4FdNb9yISFzGEGezUzVO68qmfmiSrtScvsg==}
+    peerDependencies:
+      react: ^18 || ^19
+    dependencies:
+      '@tanstack/query-core': 5.55.4
+      react: 18.3.1
+    dev: false
 
   /@testcontainers/postgresql@10.11.0:
     resolution: {integrity: sha512-TJC6kyb2lmkSF2XWvsjDVn61YRin8e1mE2IiLRkeR3mKWHm/LDwyRX14RTnRuNK7auSCCr35Ft/fKv/R6O5Taw==}
@@ -11706,6 +11733,29 @@ packages:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /react-router-dom@6.26.2(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-z7YkaEW0Dy35T3/QKPYB1LjMK2R1fxnHO8kWpUMTBdfVzZrWOiY9a7CtN8HqdWtDUWd5FY6Dl8HFsqVwH4uOtQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.19.2
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-router: 6.26.2(react@18.3.1)
+    dev: false
+
+  /react-router@6.26.2(react@18.3.1):
+    resolution: {integrity: sha512-tvN1iuT03kHgOFnLPfLJ8V95eijteveqdOSk+srqfePtQvqCExB8eHOYnlilbOcyJyKnYkr1vJvf7YqotAJu1A==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.19.2
+      react: 18.3.1
+    dev: false
 
   /react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
