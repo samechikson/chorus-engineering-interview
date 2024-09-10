@@ -31,21 +31,4 @@ export class PokemonService {
     }
     return pokemon;
   }
-
-  // Add a Pokémon to the user's profile
-  async addPokemonToProfile(id: string) {
-    const pokemon = await this.pokemonRepository.findById(id);
-    if (!pokemon) {
-      throw new NotFoundException(`Pokémon with ID ${id} not found`);
-    }
-
-    // Check if the profile can accommodate another Pokémon
-    const canAddToProfile = await this.profileService.canAddPokemonToProfile();
-    if (!canAddToProfile) {
-      throw new BadRequestException('Profile already has 6 Pokémon');
-    }
-
-    // Add Pokémon to the profile
-    return this.profileService.addPokemonToProfile(pokemon);
-  }
 }

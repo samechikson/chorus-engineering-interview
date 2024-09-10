@@ -3,8 +3,8 @@ import { Pokemon } from './pokemon.entity';
 
 @Entity('profile')
 export class Profile {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @ManyToMany(() => Pokemon)
   @JoinTable()

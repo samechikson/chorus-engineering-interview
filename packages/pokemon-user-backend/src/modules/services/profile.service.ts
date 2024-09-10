@@ -1,56 +1,88 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { ProfileRepository } from '../repositories/profile.repository';
-import { Pokemon } from '../database/entities/pokemon.entity';
+import { PokemonRepository } from '../repositories/pokemon.repository';
 
 @Injectable()
 export class ProfileService {
   private readonly MAX_TEAM_SIZE = 6;
 
-  constructor(private readonly profileRepository: ProfileRepository) {}
+  constructor(
+    private readonly profileRepository: ProfileRepository,
+    private readonly pokemonRepository: PokemonRepository
+  ) {}
+
+  // Create a new profile
+  async createProfile() {
+    return this.profileRepository.createProfile();
+  }
 
   // Check if we can add another Pokémon to the profile
-  async canAddPokemonToProfile(): Promise<boolean> {
-    const profile = await this.profileRepository.findCurrentProfile();
-    return profile.length < this.MAX_TEAM_SIZE;
+  async canAddPokemonToProfile(profileId: string): Promise<boolean> {
+    const profile = await this.profileRepository.findProfile(profileId);
+    return profile.pokemon.length < this.MAX_TEAM_SIZE;
   }
 
   // Add a Pokémon to the profile
-  async addPokemonToProfile(pokemon: Pokemon) {
-    const profile = await this.profileRepository.findCurrentProfile();
+  async addPokemonToProfile(profileId: string, pokemonId: string) {
+    const profile = await this.profileRepository.findProfile(profileId);
+    const pokemon = await this.pokemonRepository.findById(pokemonId);
 
-    if (profile.length >= this.MAX_TEAM_SIZE) {
+    if (!profile) {
+      throw new BadRequestException(`Profile with ID ${profileId} not found`);
+    }
+
+    if (!pokemon) {
+      throw new BadRequestException(`Pokémon with ID ${pokemonId} not found`);
+    }
+
+    if (profile.pokemon.length >= this.MAX_TEAM_SIZE) {
       throw new BadRequestException(
-        'Cannot add more than 6 Pokémon to the profile'
+        `Profile with ID ${profileId} is already at maximum capacity`
       );
     }
 
-    // Save the new Pokémon to the profile
-    return this.profileRepository.addPokemonToProfile(pokemon);
+    // Check if the Pokémon is already in the profile
+    if (profile.pokemon.some((p) => p.id === pokemon.id)) {
+      throw new BadRequestException(
+        `Pokémon with ID ${pokemonId} is already in the profile`
+      );
+    }
+
+    return this.profileRepository.addPokemonToProfile(profileId, pokemon);
   }
 
   // Get the current profile
-  async getProfile() {
-    return this.profileRepository.findCurrentProfile();
+  async getProfile(profileId: string) {
+    const profile = this.profileRepository.findProfile(profileId);
+
+    if (!profile) {
+      throw new BadRequestException(`Profile with ID ${profileId} not found`);
+    }
+
+    return profile;
   }
 
   // Remove a Pokémon from the profile by its ID
-  async removePokemonFromProfile(id: string) {
-    const profile = await this.profileRepository.findCurrentProfile();
-    const pokemonToRemove = profile.find(
-      (pokemon) => pokemon.id === parseInt(id)
+  async removePokemonFromProfile(profileId: string, pokemonId: string) {
+    const profile = await this.profileRepository.findProfile(profileId);
+    const pokemonToRemove = profile.pokemon.find(
+      (pokemon) => pokemon.id === parseInt(pokemonId)
     );
 
     if (!pokemonToRemove) {
       throw new BadRequestException(
-        `Pokémon with ID ${id} is not in the profile`
+        `Pokémon with ID ${pokemonId} is not in the profile`
       );
     }
 
-    return this.profileRepository.removePokemonFromProfile(id);
+    return this.profileRepository.removePokemonFromProfile(
+      profileId,
+      pokemonId
+    );
   }
 
   // Clear the entire profile
-  async clearProfile() {
-    return this.profileRepository.clearProfile();
+  async clearProfile(profileId: string) {
+    return this.profileRepository.clearProfile(profileId);
   }
 }

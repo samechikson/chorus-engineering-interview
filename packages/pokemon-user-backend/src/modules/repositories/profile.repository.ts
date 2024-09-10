@@ -8,23 +8,31 @@ import { Profile } from '../database/entities/profile.entity';
 export class ProfileRepository {
   constructor(
     @InjectRepository(Profile)
-    private readonly profileRepository: Repository<Profile>,
-    @InjectRepository(Pokemon)
-    private readonly pokemonRepository: Repository<Pokemon>
+    private readonly profileRepository: Repository<Profile>
   ) {}
 
-  // Find the current profile (for now assuming it's a single profile in the database)
-  async findCurrentProfile(): Promise<Pokemon[]> {
-    const profile = await this.profileRepository.findOne({
-      relations: ['pokemon'], // Assuming the Profile entity has a relationship with Pokémon
+  // Create a new profile
+  async createProfile(): Promise<Profile> {
+    const profile = this.profileRepository.create({ pokemon: [] });
+    return this.profileRepository.save(profile);
+  }
+
+  async findProfile(profileId: string): Promise<Profile> {
+    return await this.profileRepository.findOne({
+      relations: ['pokemon'],
+      where: { id: profileId },
     });
-    return profile ? profile.pokemon : [];
   }
 
   // Add a Pokémon to the current profile
-  async addPokemonToProfile(pokemon: Pokemon): Promise<Profile> {
+  async addPokemonToProfile(
+    profileId: string,
+    pokemon: Pokemon
+  ): Promise<Profile> {
+    // Find the profile by ID
     const profile = await this.profileRepository.findOne({
       relations: ['pokemon'],
+      where: { id: profileId },
     });
 
     if (profile) {
@@ -38,9 +46,13 @@ export class ProfileRepository {
   }
 
   // Remove a Pokémon from the profile
-  async removePokemonFromProfile(pokemonId: string): Promise<Profile> {
+  async removePokemonFromProfile(
+    profileId: string,
+    pokemonId: string
+  ): Promise<Profile> {
     const profile = await this.profileRepository.findOne({
       relations: ['pokemon'],
+      where: { id: profileId },
     });
 
     if (profile) {
@@ -54,9 +66,10 @@ export class ProfileRepository {
   }
 
   // Clear the entire profile
-  async clearProfile(): Promise<void> {
+  async clearProfile(profileId: string): Promise<void> {
     const profile = await this.profileRepository.findOne({
       relations: ['pokemon'],
+      where: { id: profileId },
     });
 
     if (profile) {

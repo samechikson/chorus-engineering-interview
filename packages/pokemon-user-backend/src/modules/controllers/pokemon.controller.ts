@@ -18,10 +18,4 @@ export class PokemonController {
     // Fetch the details of a specific Pokémon by its ID
     return this.pokemonService.getPokemonById(id);
   }
-
-  // POST /pokemon/:id
-  @Post(':id')
-  async addPokemonToProfile(@Param('id') id: string) {
-    return this.pokemonService.addPokemonToProfile(id);
-  }
 }

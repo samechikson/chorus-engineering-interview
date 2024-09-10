@@ -24,5 +24,5 @@ export class Pokemon {
   speed: number;
 
   @Column({ type: 'text', nullable: true })
-  spriteUrl: string;
+  imageUrl: string;
 }
