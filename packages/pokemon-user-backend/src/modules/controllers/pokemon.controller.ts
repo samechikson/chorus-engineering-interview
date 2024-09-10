@@ -1,6 +1,5 @@
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { PokemonService } from '../services/pokemon.service';
-// import { CreatePokemonDto } from '../dtos/create-pokemon.dto';
 
 @Controller('pokemon')
 export class PokemonController {
@@ -22,8 +21,7 @@ export class PokemonController {
 
   // POST /pokemon/:id
   @Post(':id')
-  async addPokemonToTeam(@Param('id') id: string) {
-    // Add a Pokémon to the user's team
-    return this.pokemonService.addPokemonToTeam(id);
+  async addPokemonToProfile(@Param('id') id: string) {
+    return this.pokemonService.addPokemonToProfile(id);
   }
 }

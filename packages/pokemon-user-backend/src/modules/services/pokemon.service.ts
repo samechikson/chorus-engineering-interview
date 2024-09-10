@@ -4,13 +4,13 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { PokemonRepository } from '../repositories/pokemon.repository';
-import { TeamService } from './team.service';
+import { ProfileService } from './profile.service';
 
 @Injectable()
 export class PokemonService {
   constructor(
     private readonly pokemonRepository: PokemonRepository,
-    private readonly teamService: TeamService
+    private readonly profileService: ProfileService
   ) {}
 
   // Fetch the first 150 Pokémon
@@ -32,20 +32,20 @@ export class PokemonService {
     return pokemon;
   }
 
-  // Add a Pokémon to the user's team
-  async addPokemonToTeam(id: string) {
+  // Add a Pokémon to the user's profile
+  async addPokemonToProfile(id: string) {
     const pokemon = await this.pokemonRepository.findById(id);
     if (!pokemon) {
       throw new NotFoundException(`Pokémon with ID ${id} not found`);
     }
 
-    // Check if the team can accommodate another Pokémon
-    const canAddToTeam = await this.teamService.canAddPokemonToTeam();
-    if (!canAddToTeam) {
-      throw new BadRequestException('Team already has 6 Pokémon');
+    // Check if the profile can accommodate another Pokémon
+    const canAddToProfile = await this.profileService.canAddPokemonToProfile();
+    if (!canAddToProfile) {
+      throw new BadRequestException('Profile already has 6 Pokémon');
     }
 
-    // Add Pokémon to the team
-    return this.teamService.addPokemonToTeam(pokemon);
+    // Add Pokémon to the profile
+    return this.profileService.addPokemonToProfile(pokemon);
   }
 }
