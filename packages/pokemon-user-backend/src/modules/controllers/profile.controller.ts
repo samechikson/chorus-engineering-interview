@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ProfileService } from '../services/profile.service';
 
 @Controller('profile')
@@ -24,5 +24,11 @@ export class ProfileController {
     @Param('pokemonId') pokemonId: string
   ) {
     return this.profileService.addPokemonToProfile(profileId, pokemonId);
+  }
+
+  // DELETE /profile/{id}/pokemon
+  @Delete(':id/pokemon')
+  async clearProfile(@Param('id') profileId: string) {
+    return this.profileService.clearProfile(profileId);
   }
 }

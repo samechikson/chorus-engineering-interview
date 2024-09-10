@@ -44,13 +44,39 @@ export const useProfile = () => {
   // Mutation to add a Pokémon to the profile
   const addPokemonToProfileMutation = useMutation({
     mutationFn: async (pokemonId: number) => {
-      return await fetch(`/api/profile/${profileId}/pokemon/${pokemonId}`, {
-        method: 'POST',
-      });
+      const response = await fetch(
+        `/api/profile/${profileId}/pokemon/${pokemonId}`,
+        {
+          method: 'POST',
+        }
+      );
+      if (!response.ok) {
+        throw new Error((await response.json()).message);
+      }
     },
     onSuccess: () => {
-      // Invalidate and refetch the profile after adding Pokémon
       queryClient.invalidateQueries({ queryKey: ['profile', profileId] });
+    },
+    onError: (error) => {
+      alert('Failed to add Pokémon to profile: ' + error.message);
+    },
+  });
+
+  // Mutation to clear the profile of
+  const clearProfileMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch(`/api/profile/${profileId}/pokemon`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error((await response.json()).message);
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['profile', profileId] });
+    },
+    onError: (error) => {
+      alert('Failed to clear profile: ' + error.message);
     },
   });
 
@@ -58,6 +84,7 @@ export const useProfile = () => {
     profile,
     addPokemonToProfile: (pokemonId: number) =>
       addPokemonToProfileMutation.mutate(pokemonId),
+    clearProfile: () => clearProfileMutation.mutate(),
     refetchProfile: refetch, // Manually refetch if needed
     isLoading: addPokemonToProfileMutation.isPending || isLoading, // Loading state
     error: error || addPokemonToProfileMutation.isError, // Error handling

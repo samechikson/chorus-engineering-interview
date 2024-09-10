@@ -3,13 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import PokemonCard from './PokemonCard';
 import { Pokemon } from '../types';
-import { css } from '@emotion/react';
-
-const gridStyle = css`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px;
-`;
+import { gridStyle } from '../pages/Home';
 
 const PokemonList: React.FC = () => {
   const {
