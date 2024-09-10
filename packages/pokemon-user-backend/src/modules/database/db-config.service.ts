@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { SomeEntity } from './entities/some.entity';
+import { Pokemon } from './entities/pokemon.entity';
+import { Team } from './entities/team.entity';
 
 @Injectable()
 export class DbConfigService {
@@ -12,7 +13,7 @@ export class DbConfigService {
       username: 'admin',
       password: 'admin',
       database: 'pokemon',
-      entities: [SomeEntity],
+      entities: [Pokemon, Team],
       synchronize: true,
     };
   }
