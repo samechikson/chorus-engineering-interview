@@ -21,7 +21,7 @@ const PokemonList: React.FC = () => {
 
   return (
     <div css={gridStyle}>
-      {pokemons.map((pokemon) => (
+      {pokemons?.map((pokemon) => (
         <PokemonCard key={pokemon.id} pokemon={pokemon} />
       ))}
     </div>
